@@ -13,7 +13,6 @@ public class LCA {
 	Node findLCA(int n1, int n2) {
 		return findLCA(root, n1, n2);
 	}
-
 	Node findLCA(Node node, int n1, int n2) {
 		if (node == null)
 			return null;
