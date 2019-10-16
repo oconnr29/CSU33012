@@ -1,12 +1,14 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.Test;
 
 class LCATest {
-
+	
+	
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void testEmptyTree() {
+		LCA tree = new LCA();
+		assertEquals("LCA with empty tree: ", null, tree.findLCA(1, 2) );
 	}
-
+	
 }

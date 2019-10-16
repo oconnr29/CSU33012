@@ -1,5 +1,4 @@
-public class LCA {
-	class Node {
+class Node {
 		int data;
 		Node left, right;
 
@@ -8,6 +7,7 @@ public class LCA {
 			left = right = null;
 		}
 	}
+public class LCA {
 	Node root;
 
 	Node findLCA(int n1, int n2) {
