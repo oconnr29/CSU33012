@@ -81,4 +81,25 @@ class LCATest {
 		assertEquals("LCA of 13 and 14", 3, tree.findLCA(13, 14).data);
 		assertEquals("LCA of 15 and 1", 1, tree.findLCA(15, 1).data);
 	}
+	
+	@Test
+	public void noOrderTest() {
+		LCA tree = new LCA();
+		tree.root = new Node(5);
+		tree.root.left = new Node(3);
+		tree.root.right = new Node(1);
+		tree.root.left.left = new Node(4);
+		tree.root.left.right = new Node(7);
+		tree.root.right.left = new Node(2);
+		tree.root.right.right = new Node(6);
+
+		assertEquals("LCA of tree with no order", 5,
+				tree.findLCA(6, 4).data);
+		assertEquals("LCA of tree with no order", 3,
+				tree.findLCA(3, 4).data);
+		assertEquals("LCA of tree with no order", 1,
+				tree.findLCA(6, 2).data);
+		assertEquals("LCA of tree with no order", 5,
+				tree.findLCA(7, 2).data);
+	}
 }
