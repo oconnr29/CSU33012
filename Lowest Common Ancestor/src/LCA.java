@@ -34,6 +34,10 @@ public class LCA {
 			return right;
 	}
 	
+	Node findLCADAG(Node nodeA, Node nodeB) {
+		return findLCADAG(root, nodeA, nodeB);
+	}
+	
 	Node findLCADAG(Node root, Node nodeA, Node nodeB) {
 		if (nodeA != null && nodeB != null)
 			if (nodeA.ancestors != null && nodeB.ancestors != null) {
