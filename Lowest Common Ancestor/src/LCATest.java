@@ -102,4 +102,37 @@ class LCATest {
 		assertEquals("LCA of tree with no order", 5,
 				tree.findLCA(7, 2).data);
 	}
+	
+	@Test
+	public void testDAG() {
+		LCA DAGtree = new LCA();
+		Node root = new Node(1);
+		Node node2 = new Node(2);
+		Node node3 = new Node(3);
+		Node node4 = new Node(4);
+		Node node5 = new Node(5);
+		Node node6 = new Node(6);
+
+		DAGtree.addToGraph(root);
+		DAGtree.addToGraph(node2);
+		DAGtree.addToGraph(node3);
+		DAGtree.addToGraph(node4);
+		DAGtree.addToGraph(node5);
+		DAGtree.addToGraph(node6);
+
+		DAGtree.addAncestorsToNode(root, node2);
+		DAGtree.addAncestorsToNode(node2, node3);
+		DAGtree.addAncestorsToNode(node2, node4);
+		DAGtree.addAncestorsToNode(node3, node5);
+		DAGtree.addAncestorsToNode(node5, node6);
+		DAGtree.addAncestorsToNodeAtPosition(1, node4, node6);
+
+		assertEquals(4, DAGtree.findLCADAG(root, node6, node4).data);
+		assertEquals(3, DAGtree.findLCADAG(root, node6, node3).data);
+		assertEquals(2, DAGtree.findLCADAG(root, node4, node5).data);
+		assertEquals(2, DAGtree.findLCADAG(root, node6, node2).data);
+		assertEquals(1, DAGtree.findLCADAG(root, node2, root).data);
+		assertEquals(1, DAGtree.findLCADAG(root, root, root).data);
+		assertEquals(5, DAGtree.findLCADAG(root, node6, node5).data);
+	}
 }
