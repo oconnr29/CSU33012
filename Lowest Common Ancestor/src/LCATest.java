@@ -26,7 +26,7 @@ class LCATest {
 		assertEquals("LCA of 6 and 7: ", 3, tree.findLCA(6, 7).data);
 		assertEquals("LCA of 4 and 6: ", 1, tree.findLCA(4, 6).data);
 	}
-	
+
 	@Test
 	public void testForNonExistentNodes(){
 		LCA tree = new LCA();
