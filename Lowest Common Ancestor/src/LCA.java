@@ -49,4 +49,9 @@ public class LCA {
 				return root;
 		return null;
 	}
+	
+	public void addToGraph(Node nodeA) {
+		nodeA.ancestors = new ArrayList<Node>();
+		nodeA.ancestors.add(nodeA);
+	}
 }
