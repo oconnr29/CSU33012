@@ -172,4 +172,18 @@ class LCATest {
 		assertEquals(5, DAGtree.findLCADAG(node6, node3, node7).data);
 		assertEquals(6, DAGtree.findLCADAG(node6, node5, node6).data);
 	}
+	
+	@Test
+	public void testEmptyGraph() {
+		LCA DAGtree = new LCA();
+		assertEquals(null, DAGtree.findLCADAG(null, null, null));
+	}
+
+	@Test
+	public void testGraphOneNode() {
+		LCA DAGtree = new LCA();
+		Node node1 = new Node(1);
+		DAGtree.addToGraph(node1);
+		assertEquals(1, DAGtree.findLCADAG(node1, node1, node1).data);
+	}
 }
