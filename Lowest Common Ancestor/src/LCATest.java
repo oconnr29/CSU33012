@@ -209,12 +209,19 @@ class LCATest {
 		DAGtree.addAncestorsToNode(node3, node5);
 		DAGtree.addAncestorsToNode(node5, node6);
 		DAGtree.addAncestorsToNode(node5, node4);
-		DAGtree.addAncestorsToNode(node5, node2);
 		DAGtree.addAncestorsToNode(node4, node2);
 
-		assertEquals(4, DAGtree.findLCADAG(node1, node2, node4).data);
-		assertEquals(5, DAGtree.findLCADAG(node1, node5, node4).data);
-		assertEquals(1, DAGtree.findLCADAG(node1, node1, node6).data);
-		assertEquals(3, DAGtree.findLCADAG(node1, node4, node3).data);
+		assertEquals(null, DAGtree.findLCADAG(node1, node4, node2));
+		assertEquals(null, DAGtree.findLCADAG(node1, node4, node3));
+		assertEquals(null, DAGtree.findLCADAG(node1, node1, node2));
+	}
+	
+	@Test
+	public void testNoAncestors() {
+		LCA DAGtree = new LCA();
+		Node node1 = new Node(1);
+		Node node2 = new Node(2);
+		
+		assertEquals(null, DAGtree.findLCADAG(node1, node2));
 	}
 }

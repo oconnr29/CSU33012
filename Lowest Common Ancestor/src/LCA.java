@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 class Node {
 		int data;
 		Node left, right;
@@ -9,11 +8,12 @@ class Node {
 			data = value;
 			left = right = null;
 			ancestors = null;
-			
 		}
 	}
+
 public class LCA {
 	Node root;
+	boolean cycle = false;
 
 	Node findLCA(int n1, int n2) {
 		return findLCA(root, n1, n2);
@@ -39,21 +39,23 @@ public class LCA {
 	}
 	
 	Node findLCADAG(Node root, Node nodeA, Node nodeB) {
-		if (nodeA != null && nodeB != null)
+		if (nodeA != null && nodeB != null && !cycle)
 			if (nodeA.ancestors != null && nodeB.ancestors != null) {
 				for (int i = 0; i < nodeB.ancestors.size(); i++)
 					for (int j = 0; j < nodeA.ancestors.size(); j++)
 						if (nodeB.ancestors.get(i) == nodeA.ancestors.get(j))
 							return nodeB.ancestors.get(i);
-			} else
-				return root;
+			} else return root;
 		return null;
 	}
 	
 	public void addAncestorsToNode(Node nodeA, Node nodeB) {
-		for (int i = 0; i < nodeA.ancestors.size(); i++)
+		for (int i = 0; i < nodeA.ancestors.size(); i++) {
+			if (nodeA.ancestors.get(i) == nodeB)
+				cycle = true;
 			if (!nodeB.ancestors.contains(nodeA.ancestors.get(i)))
 				nodeB.ancestors.add(nodeA.ancestors.get(i));
+		}
 	}
 
 	public void addAncestorsToNodeAtPosition(int position, Node nodeA, Node nodeB) {
